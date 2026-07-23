@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a focused, evidence-oriented improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Operational problem
+      description: Describe the incident-review workflow that is currently difficult.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain inputs, outputs, and how the behavior remains deterministic and auditable.
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy and evidence boundaries
+      description: Identify any new data sources, credentials, or causal claims involved.
+    validations:
+      required: true
