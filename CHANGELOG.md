@@ -24,3 +24,5 @@ All notable changes to this project are documented in this file. The format foll
   Markdown/JSON downloads.
 - Web Worker analysis path that keeps normalization, graph construction, and scoring off the
   browser's main thread.
+- Unit, integration, CLI, browser-import, export, responsive-layout, keyboard, and automated
+  accessibility coverage.

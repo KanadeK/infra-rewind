@@ -57,7 +57,7 @@ export function TimelineChart({ events, replayAt, onReplayAtChange }: TimelineCh
     <div className="timeline-frame" data-testid="timeline-chart">
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        role="img"
+        role="group"
         aria-label="Infrastructure evidence timeline. Each event can set the replay point."
       >
         <g className="timeline-grid">
