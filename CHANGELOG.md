@@ -11,3 +11,7 @@ All notable changes to this project are documented in this file. The format foll
 - Repository scaffold with strict TypeScript, lint, format, test, coverage, build, and browser-test
   entry points.
 - Public repository name and adjacent-project preflight.
+- Deterministic parsers for Terraform plans, Kubernetes diffs, deployment/rollback events, and
+  alerts.
+- Resource relationship graph, explainable suspicion scoring, arbitrary-time state replay, report
+  classification, and defense-in-depth sensitive-value redaction.
