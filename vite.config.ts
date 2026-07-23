@@ -7,5 +7,9 @@ export default defineConfig({
   build: {
     sourcemap: true,
     target: "es2022",
+    rolldownOptions: {
+      // Keep the emitted HTML name relative on Windows workspaces with non-ASCII path segments.
+      input: "index.html",
+    },
   },
 });

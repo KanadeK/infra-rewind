@@ -19,3 +19,8 @@ All notable changes to this project are documented in this file. The format foll
   and reconstructed resource state.
 - Three MIT-licensed synthetic incidents covering configuration regression, capacity shortage, and
   an unrelated concurrent change.
+- Responsive incident workspace with a D3 evidence timeline, arbitrary UTC replay control,
+  relationship inspection, explainable suspicion cards, local multi-file import, and real
+  Markdown/JSON downloads.
+- Web Worker analysis path that keeps normalization, graph construction, and scoring off the
+  browser's main thread.

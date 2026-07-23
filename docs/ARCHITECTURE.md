@@ -15,3 +15,8 @@ Adapters are one-way boundaries. Browser files use the file modification time on
 format lacks its own timestamp. The HTTP adapter rejects non-HTTP protocols and surfaces response
 failures. The Node adapter constrains scenario entries to their manifest directory. All three call
 the same schema validators and redaction path before analysis.
+
+The browser sends normalized events to a module Worker. The Worker owns graph construction and
+scoring, then returns an immutable analysis result. Time selection and state replay remain pure
+operations in the application process, so every visible snapshot is derived from the same event
+set. D3 supplies UTC scales and ticks; React renders the accessible SVG and evidence panels.
