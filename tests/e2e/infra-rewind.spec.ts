@@ -4,7 +4,11 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/");
+  const baseUrl = process.env.INFRA_REWIND_E2E_URL;
+  if (!baseUrl) {
+    throw new Error("INFRA_REWIND_E2E_URL was not initialized by global setup.");
+  }
+  await page.goto(baseUrl);
   await expect(page.getByTestId("app-ready")).toBeVisible();
 });
 

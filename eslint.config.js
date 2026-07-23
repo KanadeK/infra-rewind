@@ -16,7 +16,7 @@ export default tseslint.config(
     ],
   },
   {
-    files: ["src/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}"],
+    files: ["src/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}", "scripts/**/*.ts"],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     plugins: {
       "jsx-a11y": jsxA11y,

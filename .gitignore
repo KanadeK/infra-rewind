@@ -2,6 +2,7 @@ node_modules/
 coverage/
 dist/
 dist-release/
+demo-output/
 playwright-report/
 test-results/
 *.log

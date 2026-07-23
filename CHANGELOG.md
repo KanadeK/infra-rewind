@@ -26,3 +26,14 @@ All notable changes to this project are documented in this file. The format foll
   browser's main thread.
 - Unit, integration, CLI, browser-import, export, responsive-layout, keyboard, and automated
   accessibility coverage.
+- Complete English and Simplified Chinese documentation, real-input/output walkthroughs, supported
+  input schemas, privacy and architecture notes, and a reproducible runtime screenshot.
+- A manifest-verifying demo generator and a deterministic benchmark with committed machine-readable
+  results.
+
+### Fixed
+
+- Demo manifest validation now treats a null preferred candidate as a bounded-inference case
+  instead of requiring the analyzer to emit no hypotheses.
+- Browser verification and screenshot capture now use an ephemeral loopback port, avoiding fixed-port
+  collisions without terminating an existing development server.

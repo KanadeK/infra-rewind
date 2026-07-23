@@ -1,24 +1,11 @@
-import { build, preview } from "vite";
+import path from "node:path";
+import { closeStaticSite, listenStaticSite } from "../../scripts/static-site-server";
+import { build } from "vite";
 
 export default async function globalSetup() {
   await build();
-  const server = await preview({
-    preview: {
-      host: "127.0.0.1",
-      port: 4173,
-      strictPort: true,
-    },
-  });
+  const site = await listenStaticSite(path.resolve("dist"));
+  process.env.INFRA_REWIND_E2E_URL = site.url;
 
-  return async () => {
-    await new Promise<void>((resolve, reject) => {
-      server.httpServer.close((error) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        resolve();
-      });
-    });
-  };
+  return async () => closeStaticSite(site);
 }

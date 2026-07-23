@@ -21,7 +21,11 @@
     "test:integration": "vitest run tests/integration",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "demo": "tsx scripts/demo.ts",
+    "demo:screenshot": "tsx scripts/capture-demo.ts",
+    "benchmark": "tsx scripts/benchmark.ts",
+    "docs:check": "tsx scripts/check-doc-links.ts"
   },
   "dependencies": {
     "d3": "7.9.0",
