@@ -1,0 +1,21 @@
+{
+  "schema": "infra-rewind/alerts@1",
+  "alerts": [
+    {
+      "id": "checkout-5xx-alert",
+      "timestamp": "2026-07-18T09:12:00.000Z",
+      "title": "Checkout HTTP 5xx rate",
+      "status": "firing",
+      "severity": "critical",
+      "signal": "checkout_http_5xx_ratio",
+      "value": 0.23,
+      "threshold": 0.05,
+      "resources": ["k8s:payments/deployment/api"],
+      "description": "Synthetic requests cannot resolve the configured payments endpoint.",
+      "details": {
+        "window": "5m",
+        "source": "fixture-monitor"
+      }
+    }
+  ]
+}

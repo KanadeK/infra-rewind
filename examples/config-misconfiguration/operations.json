@@ -1,0 +1,35 @@
+{
+  "schema": "infra-rewind/operations@1",
+  "events": [
+    {
+      "id": "deploy-checkout-42",
+      "type": "deployment",
+      "timestamp": "2026-07-18T09:05:00.000Z",
+      "title": "Deploy checkout revision 42",
+      "environment": "synthetic-production",
+      "status": "succeeded",
+      "revision": "checkout:42",
+      "actor": "synthetic-release-pipeline",
+      "resources": ["tf:aws_ecs_service.checkout", "k8s:payments/deployment/api"],
+      "details": {
+        "source": "fixture",
+        "change_ticket": "SYN-1042"
+      }
+    },
+    {
+      "id": "rollback-checkout-41",
+      "type": "rollback",
+      "timestamp": "2026-07-18T09:22:00.000Z",
+      "title": "Rollback checkout to revision 41",
+      "environment": "synthetic-production",
+      "status": "succeeded",
+      "revision": "checkout:41",
+      "actor": "synthetic-on-call",
+      "resources": ["tf:aws_ecs_service.checkout", "k8s:payments/deployment/api"],
+      "details": {
+        "source": "fixture",
+        "change_ticket": "SYN-1042-R"
+      }
+    }
+  ]
+}

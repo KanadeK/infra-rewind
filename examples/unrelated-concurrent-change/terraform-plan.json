@@ -1,0 +1,33 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "timestamp": "2026-07-18T11:00:00.000Z",
+  "infra_rewind": {
+    "id": "tf-analytics-tags",
+    "actor": "synthetic-data-team"
+  },
+  "resource_changes": [
+    {
+      "address": "aws_s3_bucket.analytics_exports",
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "analytics_exports",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": ["update"],
+        "before": {
+          "tags": {
+            "cost-center": "analytics",
+            "retention": "30d"
+          }
+        },
+        "after": {
+          "tags": {
+            "cost-center": "data-platform",
+            "retention": "30d"
+          }
+        }
+      }
+    }
+  ]
+}

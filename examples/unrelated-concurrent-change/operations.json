@@ -1,0 +1,22 @@
+{
+  "schema": "infra-rewind/operations@1",
+  "events": [
+    {
+      "id": "deploy-catalog-banner",
+      "type": "deployment",
+      "timestamp": "2026-07-18T11:05:00.000Z",
+      "title": "Publish catalog banner",
+      "environment": "synthetic-production",
+      "status": "succeeded",
+      "revision": "catalog-content:88",
+      "actor": "synthetic-catalog-team",
+      "resources": [
+        "tf:aws_s3_bucket.analytics_exports",
+        "k8s:catalog/configmap/storefront-banner"
+      ],
+      "details": {
+        "source": "fixture"
+      }
+    }
+  ]
+}

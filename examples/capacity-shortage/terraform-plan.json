@@ -1,0 +1,29 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "timestamp": "2026-07-18T10:00:00.000Z",
+  "infra_rewind": {
+    "id": "tf-api-capacity-down",
+    "actor": "synthetic-capacity-job"
+  },
+  "resource_changes": [
+    {
+      "address": "aws_ecs_service.payments_api",
+      "mode": "managed",
+      "type": "aws_ecs_service",
+      "name": "payments_api",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": ["update"],
+        "before": {
+          "desired_count": 8,
+          "deployment_maximum_percent": 200
+        },
+        "after": {
+          "desired_count": 3,
+          "deployment_maximum_percent": 200
+        }
+      }
+    }
+  ]
+}

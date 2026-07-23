@@ -1,0 +1,29 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "timestamp": "2026-07-18T09:00:00.000Z",
+  "infra_rewind": {
+    "id": "tf-checkout-task-42",
+    "actor": "synthetic-release-pipeline"
+  },
+  "resource_changes": [
+    {
+      "address": "aws_ecs_service.checkout",
+      "mode": "managed",
+      "type": "aws_ecs_service",
+      "name": "checkout",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": ["update"],
+        "before": {
+          "desired_count": 6,
+          "task_definition": "checkout:41"
+        },
+        "after": {
+          "desired_count": 6,
+          "task_definition": "checkout:42"
+        }
+      }
+    }
+  ]
+}

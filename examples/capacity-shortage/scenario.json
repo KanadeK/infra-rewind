@@ -1,0 +1,37 @@
+{
+  "schema": "infra-rewind/scenario@1",
+  "id": "capacity-shortage",
+  "title": "API capacity shortage",
+  "description": "A scale-down reaches production before peak traffic, saturation alerts fire, and capacity is restored.",
+  "evidenceFiles": [
+    "terraform-plan.json",
+    "kubernetes-diff.json",
+    "operations.json",
+    "alerts.json",
+    "recovery-diff.json"
+  ],
+  "defaultReplayAt": "2026-07-18T10:12:00.000Z",
+  "expected": {
+    "topCandidateId": "k8s-capacity-down",
+    "replayChecks": [
+      {
+        "at": "2026-07-18T10:01:00.000Z",
+        "resourceId": "k8s:payments/deployment/api",
+        "path": "spec.replicas",
+        "equals": 8
+      },
+      {
+        "at": "2026-07-18T10:12:00.000Z",
+        "resourceId": "k8s:payments/deployment/api",
+        "path": "spec.replicas",
+        "equals": 3
+      },
+      {
+        "at": "2026-07-18T10:32:00.000Z",
+        "resourceId": "k8s:payments/deployment/api",
+        "path": "spec.replicas",
+        "equals": 8
+      }
+    ]
+  }
+}

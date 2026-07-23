@@ -1,0 +1,31 @@
+{
+  "schema": "infra-rewind/scenario@1",
+  "id": "unrelated-concurrent-change",
+  "title": "Unrelated concurrent change",
+  "description": "A catalog banner and analytics tags change shortly before a payments alert, but no resource relationship is observed.",
+  "evidenceFiles": [
+    "terraform-plan.json",
+    "kubernetes-diff.json",
+    "operations.json",
+    "alerts.json"
+  ],
+  "defaultReplayAt": "2026-07-18T11:09:00.000Z",
+  "expected": {
+    "topCandidateId": null,
+    "maxCandidateScore": 25,
+    "replayChecks": [
+      {
+        "at": "2026-07-18T11:03:00.000Z",
+        "resourceId": "k8s:catalog/configmap/storefront-banner",
+        "path": "data.message",
+        "equals": "Summer sale"
+      },
+      {
+        "at": "2026-07-18T11:09:00.000Z",
+        "resourceId": "k8s:catalog/configmap/storefront-banner",
+        "path": "data.message",
+        "equals": "Autumn preview"
+      }
+    ]
+  }
+}

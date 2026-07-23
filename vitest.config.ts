@@ -8,7 +8,7 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json-summary", "html"],
       reportsDirectory: "coverage",
-      include: ["src/project.ts", "src/core/**/*.ts"],
+      include: ["src/project.ts", "src/core/**/*.ts", "src/adapters/**/*.ts", "src/cli.ts"],
       thresholds: {
         lines: 80,
         functions: 80,

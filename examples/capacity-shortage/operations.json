@@ -1,0 +1,27 @@
+{
+  "schema": "infra-rewind/operations@1",
+  "events": [
+    {
+      "id": "deploy-capacity-profile-17",
+      "type": "deployment",
+      "timestamp": "2026-07-18T10:05:00.000Z",
+      "title": "Apply capacity profile 17",
+      "environment": "synthetic-production",
+      "status": "succeeded",
+      "revision": "capacity-profile:17",
+      "actor": "synthetic-capacity-job",
+      "resources": ["tf:aws_ecs_service.payments_api", "k8s:payments/deployment/api"]
+    },
+    {
+      "id": "rollback-capacity-profile-16",
+      "type": "rollback",
+      "timestamp": "2026-07-18T10:30:00.000Z",
+      "title": "Restore capacity profile 16",
+      "environment": "synthetic-production",
+      "status": "succeeded",
+      "revision": "capacity-profile:16",
+      "actor": "synthetic-on-call",
+      "resources": ["tf:aws_ecs_service.payments_api", "k8s:payments/deployment/api"]
+    }
+  ]
+}

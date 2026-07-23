@@ -1,0 +1,70 @@
+{
+  "apiVersion": "infra-rewind/v1",
+  "kind": "KubernetesDiff",
+  "id": "k8s-config-error",
+  "timestamp": "2026-07-18T09:02:00.000Z",
+  "actor": "synthetic-release-pipeline",
+  "changes": [
+    {
+      "resource": {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "namespace": "payments",
+        "name": "api"
+      },
+      "action": "update",
+      "before": {
+        "metadata": {
+          "labels": {
+            "app": "payments-api"
+          }
+        },
+        "spec": {
+          "replicas": 6,
+          "template": {
+            "spec": {
+              "containers": [
+                {
+                  "name": "api",
+                  "image": "example.invalid/payments-api:41",
+                  "env": [
+                    {
+                      "name": "PAYMENTS_BASE_URL",
+                      "value": "https://payments.internal"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "after": {
+        "metadata": {
+          "labels": {
+            "app": "payments-api"
+          }
+        },
+        "spec": {
+          "replicas": 6,
+          "template": {
+            "spec": {
+              "containers": [
+                {
+                  "name": "api",
+                  "image": "example.invalid/payments-api:42",
+                  "env": [
+                    {
+                      "name": "PAYMENTS_BASE_URL",
+                      "value": "https://payment.internal"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -65,6 +65,7 @@ const kubernetesDiffSchema = z
     kind: z.literal("KubernetesDiff"),
     id: z.string().min(1),
     timestamp,
+    intent: z.enum(["change", "rollback"]).optional(),
     actor: z.string().min(1).optional(),
     changes: z.array(
       z.object({
@@ -304,7 +305,7 @@ function parseKubernetes(value: unknown, context: ImportContext): TimelineEvent[
       id: diff.id,
       at,
       sourceType: "kubernetes_diff",
-      kind: "change",
+      kind: diff.intent ?? "change",
       title: `Kubernetes diff: ${mutations.length} resource change${mutations.length === 1 ? "" : "s"}`,
       summary: `${mutations.length} desired-state mutation${mutations.length === 1 ? "" : "s"} observed.`,
       resourceIds,

@@ -1,0 +1,37 @@
+{
+  "schema": "infra-rewind/scenario@1",
+  "id": "config-misconfiguration",
+  "title": "Checkout configuration regression",
+  "description": "A misspelled internal payments endpoint is deployed, alerts fire, and the desired state is restored.",
+  "evidenceFiles": [
+    "terraform-plan.json",
+    "kubernetes-diff.json",
+    "operations.json",
+    "alerts.json",
+    "recovery-diff.json"
+  ],
+  "defaultReplayAt": "2026-07-18T09:10:00.000Z",
+  "expected": {
+    "topCandidateId": "k8s-config-error",
+    "replayChecks": [
+      {
+        "at": "2026-07-18T09:01:00.000Z",
+        "resourceId": "k8s:payments/deployment/api",
+        "path": "spec.template.spec.containers.0.env.0.value",
+        "equals": "https://payments.internal"
+      },
+      {
+        "at": "2026-07-18T09:10:00.000Z",
+        "resourceId": "k8s:payments/deployment/api",
+        "path": "spec.template.spec.containers.0.env.0.value",
+        "equals": "https://payment.internal"
+      },
+      {
+        "at": "2026-07-18T09:24:00.000Z",
+        "resourceId": "k8s:payments/deployment/api",
+        "path": "spec.template.spec.containers.0.env.0.value",
+        "equals": "https://payments.internal"
+      }
+    ]
+  }
+}

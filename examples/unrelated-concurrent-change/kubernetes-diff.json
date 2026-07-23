@@ -1,0 +1,38 @@
+{
+  "apiVersion": "infra-rewind/v1",
+  "kind": "KubernetesDiff",
+  "id": "k8s-storefront-banner",
+  "timestamp": "2026-07-18T11:04:00.000Z",
+  "actor": "synthetic-catalog-team",
+  "changes": [
+    {
+      "resource": {
+        "apiVersion": "v1",
+        "kind": "ConfigMap",
+        "namespace": "catalog",
+        "name": "storefront-banner"
+      },
+      "action": "update",
+      "before": {
+        "metadata": {
+          "labels": {
+            "app": "catalog"
+          }
+        },
+        "data": {
+          "message": "Summer sale"
+        }
+      },
+      "after": {
+        "metadata": {
+          "labels": {
+            "app": "catalog"
+          }
+        },
+        "data": {
+          "message": "Autumn preview"
+        }
+      }
+    }
+  ]
+}

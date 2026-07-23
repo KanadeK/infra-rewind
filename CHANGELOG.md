@@ -15,3 +15,7 @@ All notable changes to this project are documented in this file. The format foll
   alerts.
 - Resource relationship graph, explainable suspicion scoring, arbitrary-time state replay, report
   classification, and defense-in-depth sensitive-value redaction.
+- Browser file, HTTP, and Node filesystem adapters plus a CLI that exports Markdown or JSON reports
+  and reconstructed resource state.
+- Three MIT-licensed synthetic incidents covering configuration regression, capacity shortage, and
+  an unrelated concurrent change.

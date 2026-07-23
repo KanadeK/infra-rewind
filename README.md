@@ -22,6 +22,12 @@ npm run test:coverage
 npm run build
 ```
 
+Analyze one of the versioned synthetic incidents without a browser:
+
+```bash
+npm run analyze -- examples/config-misconfiguration --format markdown
+```
+
 Infra Rewind runs on synthetic, MIT-licensed fixtures by default. It does not upload imported
 infrastructure data and must never be treated as an automated root-cause authority.
 
