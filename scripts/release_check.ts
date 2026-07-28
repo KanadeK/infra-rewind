@@ -56,11 +56,8 @@ if (status.length > 0) {
   throw new Error(`Release check requires a clean worktree:\n${status}`);
 }
 
-const identity = await git(["config", "--get-regexp", "^user\\.(name|email)$"]);
-const configured = new Set(
-  identity.split(/\r?\n/).map((line) => line.replace(/^user\.(?:name|email)\s+/, "")),
-);
 const commits = await git(["log", "--format=%an%x00%ae%x00%cn%x00%ce"]);
+const commitIdentities = new Set<string>();
 for (const line of commits.split(/\r?\n/)) {
   const [authorName, authorEmail, committerName, committerEmail] = line.split("\0");
   if (
@@ -68,13 +65,17 @@ for (const line of commits.split(/\r?\n/)) {
     !authorEmail ||
     !committerName ||
     !committerEmail ||
-    !configured.has(authorName) ||
-    !configured.has(authorEmail) ||
-    !configured.has(committerName) ||
-    !configured.has(committerEmail)
+    authorName !== committerName ||
+    authorEmail !== committerEmail
   ) {
-    throw new Error(`Commit identity does not match configured Git user: ${line}`);
+    throw new Error(`Commit has inconsistent author/committer identity: ${line}`);
   }
+  commitIdentities.add(`${authorName} <${authorEmail}>`);
+}
+if (commitIdentities.size !== 1) {
+  throw new Error(
+    `Release history must have one verified identity: ${[...commitIdentities].join(", ")}`,
+  );
 }
 const commitBodies = await git(["log", "--format=%B"]);
 if (/Co-authored-by:/i.test(commitBodies)) {

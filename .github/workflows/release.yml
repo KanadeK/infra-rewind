@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -30,6 +31,7 @@ jobs:
           name: infra-rewind-${{ github.ref_name }}
           path: dist-release/*
       - name: Create release if needed and upload assets
+        if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
