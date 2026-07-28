@@ -6,6 +6,8 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-07-28
+
 ### Added
 
 - Repository scaffold with strict TypeScript, lint, format, test, coverage, build, and browser-test
