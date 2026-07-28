@@ -5,7 +5,7 @@ offline behavior, evidence traceability, and explicit separation between facts a
 
 ## Local workflow
 
-1. Use Node.js 22.12 or newer.
+1. Use Node.js 22.13 or newer.
 2. Run `npm ci`.
 3. Create a focused branch.
 4. Add regression coverage for behavioral changes.

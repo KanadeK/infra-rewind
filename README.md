@@ -85,7 +85,7 @@ translate external representations into core events. See [Architecture](docs/ARC
 
 Requirements:
 
-- Node.js 22.12 or newer
+- Node.js 22.13 or newer
 - npm 10 or newer
 - Chromium installed by Playwright only when running browser tests or recapturing the screenshot
 

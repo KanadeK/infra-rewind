@@ -72,7 +72,7 @@ flowchart LR
 
 ## 安装
 
-要求 Node.js 22.12+、npm 10+。只有运行浏览器测试或重新截图时才需要 Playwright Chromium。
+要求 Node.js 22.13+、npm 10+。只有运行浏览器测试或重新截图时才需要 Playwright Chromium。
 
 ```bash
 git clone https://github.com/KanadeK/infra-rewind.git
