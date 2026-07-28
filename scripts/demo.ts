@@ -2,8 +2,8 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadScenarioDirectory } from "../src/adapters/nodeFiles";
-import { runCli } from "../src/cli";
 import { analyzeEvents } from "../src/core/analyze";
+import { createIncidentReport, exportReportMarkdown } from "../src/core/report";
 import { replayStateAt } from "../src/core/replay";
 import type { JsonValue } from "../src/core/types";
 
@@ -38,7 +38,9 @@ const summaryRows: string[] = [];
 for (const scenarioId of scenarioIds) {
   const scenarioDirectory = path.join(root, "examples", scenarioId);
   const scenario = await loadScenarioDirectory(scenarioDirectory);
-  const analysis = analyzeEvents(scenario.events);
+  const analysis = analyzeEvents(scenario.events, {
+    now: () => new Date(scenario.manifest.defaultReplayAt),
+  });
   const topCandidate = analysis.hypotheses[0]?.candidateEventId ?? null;
   const topScore = analysis.hypotheses[0]?.score ?? 0;
 
@@ -71,20 +73,16 @@ for (const scenarioId of scenarioIds) {
     }
   }
 
-  await runCli([
-    scenarioDirectory,
-    "--format",
-    "markdown",
-    "--out",
-    path.join(outputDirectory, `${scenarioId}.md`),
-  ]);
-  await runCli([
-    scenarioDirectory,
-    "--format",
-    "json",
-    "--out",
-    path.join(outputDirectory, `${scenarioId}.json`),
-  ]);
+  const report = createIncidentReport(analysis, scenario.manifest.title);
+  const replay = replayStateAt(analysis.events, scenario.manifest.defaultReplayAt);
+  const markdown = `${exportReportMarkdown(report)}\n## Replayed state at ${scenario.manifest.defaultReplayAt}\n\n\`\`\`json\n${JSON.stringify(replay, null, 2)}\n\`\`\`\n`;
+  const json = `${JSON.stringify(
+    { report, replay: { at: scenario.manifest.defaultReplayAt, resources: replay } },
+    null,
+    2,
+  )}\n`;
+  await writeFile(path.join(outputDirectory, `${scenarioId}.md`), markdown, "utf8");
+  await writeFile(path.join(outputDirectory, `${scenarioId}.json`), json, "utf8");
 
   summaryRows.push(
     `| ${scenario.manifest.title} | ${analysis.events.length} | ${analysis.hypotheses.length} | ${topScore || "none"} | [Markdown](./${scenarioId}.md) · [JSON](./${scenarioId}.json) |`,

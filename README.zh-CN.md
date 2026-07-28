@@ -193,11 +193,18 @@ npm run test:coverage
 npm run test:e2e
 npm run build
 npm run benchmark
+npm run demo
+npm run package
+npm run verify
 ```
 
 测试覆盖成功路径、损坏/缺失输入、路径越界、HTTP 失败、脱敏、评分边界、回放变化、Worker、
 CLI、浏览器导入导出、响应式布局、键盘操作和 axe 无障碍规则。核心行覆盖率超过 98%。
 实测机器、方法与结果见 [BENCHMARK.md](docs/BENCHMARK.md)。
+
+仓库同时提供 `make verify`、`make demo`、`make package` 与 `make release-check`。系统没有
+Make 时，使用同名 npm 脚本；它们都会执行真实检查。发布检查会强制要求干净工作区、带日期的
+v0.1.0 CHANGELOG、已校验制品和一致的 Git 作者。
 
 ## 隐私与安全
 

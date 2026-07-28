@@ -18,8 +18,21 @@ describe("demo generator", () => {
 
     expect(stdout).toContain("Validated 3 incidents");
     const index = await readFile(path.join(root, "demo-output", "README.md"), "utf8");
+    const firstReport = await readFile(
+      path.join(root, "demo-output", "config-misconfiguration.md"),
+      "utf8",
+    );
     const unrelatedRow = index.match(/\| Unrelated concurrent change \| 4 \| \d+ \| (\d+) \|/);
     expect(unrelatedRow).not.toBeNull();
     expect(Number(unrelatedRow?.[1])).toBeLessThanOrEqual(25);
+
+    await execFileAsync(process.execPath, [tsxCli, path.join(root, "scripts", "demo.ts")], {
+      cwd: root,
+    });
+    const secondReport = await readFile(
+      path.join(root, "demo-output", "config-misconfiguration.md"),
+      "utf8",
+    );
+    expect(secondReport).toBe(firstReport);
   });
 });

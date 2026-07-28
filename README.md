@@ -214,12 +214,20 @@ npm run test:coverage
 npm run test:e2e
 npm run build
 npm run benchmark
+npm run demo
+npm run package
+npm run verify
 ```
 
 The test suite covers success, malformed and missing inputs, path containment, HTTP failure,
 redaction, scoring boundaries, replay transitions, the Worker, CLI output, browser import/export,
 responsive layout, keyboard control, and axe accessibility rules. Core line coverage is above 98%.
 Measured results and methodology are in [BENCHMARK.md](docs/BENCHMARK.md).
+
+The repository also provides `make verify`, `make demo`, `make package`, and `make release-check`.
+On systems without Make, use the same-named npm scripts; each executes the real checks. The release
+check intentionally requires a clean tree, a dated v0.1.0 changelog entry, verified artifacts, and
+matching Git authors.
 
 ## Privacy and security
 

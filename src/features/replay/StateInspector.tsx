@@ -27,7 +27,6 @@ export function StateInspector({ snapshots, replayAt }: StateInspectorProps) {
                   {snapshot.changedAt ? `changed ${snapshot.changedAt.slice(11, 19)}` : "baseline"}
                 </span>
               </summary>
-              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- scrollable JSON requires keyboard access */}
               <pre role="region" aria-label={`${snapshot.resourceId} state JSON`} tabIndex={0}>
                 {JSON.stringify(snapshot.state, null, 2)}
               </pre>

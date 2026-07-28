@@ -30,6 +30,9 @@ All notable changes to this project are documented in this file. The format foll
   input schemas, privacy and architecture notes, and a reproducible runtime screenshot.
 - A manifest-verifying demo generator and a deterministic benchmark with committed machine-readable
   results.
+- Linux quality gates, Windows/macOS portability checks, dependency and repository scans, GitHub
+  Pages deployment, tag-driven release automation, and deterministic cross-platform release
+  archives with extraction smoke tests.
 
 ### Fixed
 
@@ -37,3 +40,9 @@ All notable changes to this project are documented in this file. The format foll
   instead of requiring the analyzer to emit no hypotheses.
 - Browser verification and screenshot capture now use an ephemeral loopback port, avoiding fixed-port
   collisions without terminating an existing development server.
+- Cross-platform task orchestration now invokes npm through its current CLI entry point, avoiding
+  Windows `.cmd` spawn failures without enabling a shell.
+- Generated demo reports now use the scenario's injected clock, keeping incident release archives
+  byte-for-byte reproducible across repeated builds.
+- Browser verification now caps concurrency at two workers, preventing Windows Chromium worker
+  exhaustion while retaining all four independent end-to-end paths.
